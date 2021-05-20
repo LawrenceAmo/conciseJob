@@ -88,7 +88,7 @@
                                 <td>{{$users[$i]->position}}</td>
                                 <td>{{$users[$i]->start_date}}</td>
                                 <td>{{$users[$i]->department}}</td>
-                                <td>{{$users[$i]->annual_salary}}</td>
+                                <td>R{{number_format($users[$i]->annual_salary)}}</td>
                                 <td>{{$users[$i]->manager_employee_number}}</td>
                                 <td>{{$users[$i]->project_c1}}</td>
                                 <td>{{$users[$i]->ptoject_c2}}</td>
@@ -121,7 +121,7 @@
                         var position = element("td"); position.innerHTML = user.position;  tr.appendChild(position);
                         var sdate = element("td"); sdate.innerHTML = user.start_date;  tr.appendChild(sdate);
                         var dep = element("td"); dep.innerHTML = user.department;  tr.appendChild(dep);
-                        var annsal = element("td"); annsal.innerHTML = user.annual_salary;  tr.appendChild(annsal);
+                        var annsal = element("td"); annsal.innerHTML = "R"+user.annual_salary;  tr.appendChild(annsal);
                         var men = element("td"); men.innerHTML = user.manager_employee_number;  tr.appendChild(men);
                         var p1 = element("td");  p1.innerHTML = user.project_c1;  tr.appendChild(p1);
                         var p2 = element("td"); p2.innerHTML = user.project_c2;  tr.appendChild(p2);

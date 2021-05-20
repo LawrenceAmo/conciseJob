@@ -18,8 +18,8 @@ class CreateTokensTable extends Migration
             $table->string('token')->nullable();
             $table->string('signature')->nullable();            
             $table->string('verify_token')->nullable();
-            $table->unsignedBigInteger('userID');
-            $table->foreign('userID')->references('UserID')->on('users')->onDelete('cascade');  
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');  
             $table->timestamps();
         });
     }

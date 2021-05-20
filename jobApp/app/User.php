@@ -8,10 +8,10 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    public function setDateFormat($value)
-    {
-       $this->attributes['dob'] = date_format($valu, "Y/m/d");
-    }
+    // public function setDateFormat($value)
+    // {
+    //    $this->attributes['dob'] = date_format($valu, "Y/m/d");
+    // }
     /**
      * The attributes that are mass assignable.
      *

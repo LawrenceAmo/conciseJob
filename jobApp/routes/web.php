@@ -15,6 +15,7 @@ Route::domain('{account}.myapp.com')->group(function () {
 });*/
 
 Route::get('/', 'HomeController@index');
+Route::get('/admin', 'HomeController@recoreds');
 Route::get('/register/view', 'HomeController@register')->name('register');
 Route::get('/login/view', 'HomeController@login')->name('login'); // update user profile info
 
@@ -22,3 +23,11 @@ Route::get('/login/view', 'HomeController@login')->name('login'); // update user
 /////////////////////////
 Route::get('/export', 'HomeController@export')->name("export");
 Route::post('/import', 'HomeController@import')->name("import");
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

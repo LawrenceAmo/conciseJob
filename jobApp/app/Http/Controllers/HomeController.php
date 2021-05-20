@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\User;
+use App\emrecords;
 use App\Exports\UserExport;
 use App\Imports\UserImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -15,13 +15,18 @@ class HomeController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        // $users = emrecords::all();
+        return view('Index')->with("users",$users);
+    }
+    public function recoreds()
+    {
+        $users = emrecords::all();
         return view('Index')->with("users",$users);
     }
 
     public function get_data(string $id)
     {
-        $users = User::where('employee_number', 'like', "%{$id}%")->get();
+        $users = emrecords::where('employee_number', 'like', "%{$id}%")->get();
         return $users;
     }
 

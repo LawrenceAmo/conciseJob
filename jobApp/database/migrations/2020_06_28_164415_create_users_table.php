@@ -14,19 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('userID')->index();
-            $table->string('employee_number')->unique(); 
+            $table->bigIncrements('id')->index();
             $table->string('first_name')->nullable(); 
             $table->string('last_name')->nullable();
-            $table->string('position')->nullable();
-            $table->string('dob')->nullable();
-            $table->string('start_date')->nullable();
-            $table->string('department')->nullable(); 
-            $table->decimal('annual_salary', $precision =12)->nullable();
-            $table->string('manager_employee_number')->nullable();   
-            $table->string('project_c1')->nullable();   
-            $table->string('ptoject_c2')->nullable();   
-            $table->string('project_c3')->nullable();   
+            $table->string('role')->nullable();  
             $table->string('email')->nullable();
             $table->timestamps(); 
         });       

@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-// use App\Providers\RouteServiceProvider;
-// use App\User;
+use App\Providers\RouteServiceProvider;
+use App\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -24,62 +21,53 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-   
-    // protected function validator(array $data)
-    // {
-    //     return Validator::make($data, [
-    //         'firstName' => ['required', 'string', 'max:255'],
-    //         'lastName' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'promoCode' => [ 'string', 'max:10', 'exists:affiliates,url_code'],
-    //         'password' => ['required', 'string', 'min:6', 'confirmed'],
-    //        // 'status' => ['required'],
-    //         //'role' => ['required']
-    //     ]);
-    // }
 
-   
+    use RegistersUsers;
 
-    public function register(Request $request)
-    {                 
-        $first_name = $request->first_name;
-        $last_name = $request->last_name;
-        $email = $request->email;
-        $password = $request->password;
-        $role = $request->role;
-        $admin_code = $request->admin_code;
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::HOME;
 
-        // create a user tokens
-        $value = ''.$last_name.''.$email.''.$password.''.$role;
-        $token = hash('sha256', $value, false);
-        $signature = hash('sha384', $token.''.now(), false);
-        $verify_token = Hash::make($signature);
-
-        $all_admin_codes = 1;
-        if ($all_admin_codes) {
-           return "Please enter a valid Admin Code...";
-        }
-
-        $user= User::create([
-        'first_name' => $data['firstName'],
-        'last_name' => $data['lastName'],
-        'email' => $email,
-        'roleID' => $roleID,
-        'password' => Hash::make($password),
-        ]);
-
-        return $user;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
     }
 
-    ////////////////////////////////////////////// Log in
-    public function login(Request $request)
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
     {
-        $email = $request->email;
-        $password = $request->password;
-//     Hash::check($password, $db_password)
-        if (1) {
-            return "all is well";
-        }
-       return "ERROR! Invalid credentials, One or more input(s) are incorrect...";
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\User;
+use App\emrecords;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
@@ -12,6 +12,7 @@ HeadingRowFormatter::default('none');
 
   class UserImport implements ToModel, WithHeadingRow
 {
+    
     /**
     * @param array $row
     *
@@ -19,7 +20,7 @@ HeadingRowFormatter::default('none');
     */
     public function model(array $row)
     {
-            return new User([
+            return new emrecords([
                 'employee_number' => $row['Employee Number'],
                 'first_name' => $row['First Name'],
                 'last_name' => $row['Surname'],
