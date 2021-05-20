@@ -1,0 +1,29 @@
+.dark.learnmode{
+    background-color: #303436;
+}
+.sidebar.learnmode{
+    background-color: #3d4547;
+    border-radius: 0%;
+}
+.topbar.learnmode{
+    background-color: #596466;
+    border-radius: 0%;
+}
+.border-dark.learnmode{
+    border: 1px solid #303436;
+}
+.dark-text-1{
+    color: #1b1c1d;
+}
+.dark-text-2{
+    color: #33373a;
+}
+.dark-text-3{
+    color: #303436;
+}
+.dark-text-4{
+    color: #61676b;
+}
+.dark-text-5{
+    color: #778188;
+}
