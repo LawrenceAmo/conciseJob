@@ -9,12 +9,10 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-HeadingRowFormatter::default('none');
-
-  class UserImport implements ToModel, WithHeadingRow
+class UpdatesImport implements ToModel
 {
     use Importable;
-    // 'dob' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['Date of Birth']),
+
     /**
     * @param array $row
     *
@@ -22,8 +20,8 @@ HeadingRowFormatter::default('none');
     */
     public function model(array $row)
     {
-            return new emrecords([
-                'employee_number' => $row['Employee Number'],
+        return new emrecords([
+            'employee_number' => $row['Employee Number'],
                 'first_name' => $row['First Name'],
                 'last_name' => $row['Surname'],
                 'dob' => $row['Date of Birth'],
@@ -35,17 +33,11 @@ HeadingRowFormatter::default('none');
                 'project_c1' => $row['Project Code 1'],
                 'ptoject_c2' => $row['Project Code 2'],
                 'project_c3' => $row['Project Code 3'],
-                'email' => '',                
-            ]);        
+        ]);
     }
 
     public function headingRow(): int
     {
-        return 1;
+        return 0;
     }
-
 }
-
-
-
-

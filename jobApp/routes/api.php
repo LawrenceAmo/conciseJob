@@ -20,9 +20,11 @@ use App\Users;
 //     return $request->user();
 // });
 
-Route::get('get/records/{id}', 'HomeController@get_data');
+Route::get('get/records/{id}', 'HomeController@get_data'); // get records on search
+Route::get('get/records', 'HomeController@get_records'); // get records on upload
 
 Route::post('/upload/records', 'HomeController@upload_records');
+Route::post('/update/records', 'HomeController@update_records');
 
 
 Route::post('/register', 'Auth\RegisterController@register');
